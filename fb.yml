@@ -1,0 +1,36 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /home/lieven/filebeat/heartbeat-2.log
+    
+processors:
+- grok:
+    patterns: ["%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:host} %{DATA:component}(?:\\[%{POSINT:forget}\\])?: %{GREEDYDATA:syslog_message}"]
+    timestamps: ["Jan _2 15:04:05"]
+#- javascript:
+#    file: "fb.js"
+    
+http.enabled: true
+      
+output.console:
+  enabled: false
+  codec.avro:
+    file: "fb.json"
+output.kafka:
+  enabled: true
+  hosts: ["192.168.0.163:9092"]
+  topic: 'topic_avro_syslog'
+  version: 0.9
+  compression: none
+  compression_level: 0
+  keep_alive: 3
+  required_acks: 0
+  client_id: 'filebeat'
+  codec.avro:
+    file: "fb.json"
+  channel_buffer_size: 1
+    
+  # initial brokers for reading cluster metadata
+#    file: "fb.json"
+# message topic selection + partitioning
