@@ -23,7 +23,7 @@ cd ..
 add to .profile in $HOME and logout/login
 ```
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/go/bin
+export PATH=$PATH:/usr/local/go/bin:/home/lieven/.local/bin:$GOPATH/bin
 ```
 #### Install tools
 - python3.8
