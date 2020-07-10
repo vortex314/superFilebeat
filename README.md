@@ -54,9 +54,12 @@ sudo usermod -aG docker lieven # should be your own user id
 Check python versions
 https://linuxconfig.org/how-to-change-from-default-to-alternative-python-version-on-debian-linux
 
+#### Build instructions
+
 ```
 cd $HOME
 mkdir workspace
+cd workspace
 git clone https://github.com/elastic/beats.git
 git clone https://github.com/vortex314/superFilebeat
 export BEATS=$HOME/workspace/beats
