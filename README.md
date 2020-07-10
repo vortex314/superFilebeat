@@ -14,10 +14,10 @@ It contains :
 ![The Flow](https://github.com/vortex314/superFilebeat/blob/master/docs/Filebeat%2B%2B.png)
 
 
-# System requirements
+#### System requirements
 Started from a fresh Kubuntu 20.04 install on a desktop pc
 https://kubuntu.org/getkubuntu/
-## Install GO
+#### Install GO
 https://golang.org/doc/install?download=go1.14.4.linux-amd64.tar.gz
 ```
 cd ~/Downloads
@@ -29,7 +29,7 @@ add to .profile in $HOME and logout/login
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/go/bin
 ```
-# Install tools
+#### Install tools
 python3.8
 git
 mage
@@ -43,7 +43,7 @@ go run bootstrap.go
 go get github.com/elastic/beats
 
 ```
-# install Docker => only needed for crossBuild to windows, macOs
+#### install Docker => only needed for crossBuild to windows, macOs
 ```
 sudo apt-get remove docker docker-engine docker.io containerd runc
 curl -fsSL https://get.docker.com -o get-docker.sh
