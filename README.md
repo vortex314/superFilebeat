@@ -59,6 +59,7 @@ cd superFilebeat
 export BEATS=$HOME/workspace/beats
 mkdir $BEATS/libbeat/outputs/codec/avro
 cp avro.go $BEATS/libbeat/outputs/codec/avro
+cp event.go $BEATS/libbeat/outputs/codec/avro
 cp grok.go $BEATS/libbeat/processors/actions
 cp javascript.go $BEATS/libbeat/processors/actions
 cp includes.go $BEATS/libbeat/publisher/includes/includes.go

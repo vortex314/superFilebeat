@@ -28,10 +28,10 @@ import (
 
 	"github.com/elastic/go-structform/gotype"
 
-	"github.com/elastic/beats/libbeat/beat"
-	"github.com/elastic/beats/libbeat/common"
-	"github.com/elastic/beats/libbeat/outputs/codec"
-	"github.com/linkedin/goavro/v2"
+	"github.com/elastic/beats/v7/libbeat/beat"
+	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/elastic/beats/v7/libbeat/outputs/codec"
+	"github.com/linkedin/goavro"
 )
 
 // Encoder for serializing a beat.Event to avro.
@@ -125,7 +125,7 @@ func (e *Encoder) Encode(index string, event *beat.Event) ([]byte, error) {
 
 	found, _ := event.Fields.HasKey("timestamp")
 	if !found {
-//		event.PutValue("timestamp", time.Now().UnixNano()/1000000)
+		//		event.PutValue("timestamp", time.Now().UnixNano()/1000000)
 		event.PutValue("timestamp", time.Now())
 	}
 
