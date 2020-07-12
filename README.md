@@ -63,5 +63,6 @@ cp javascript.go $BEATS/libbeat/processors/actions
 cp includes.go $BEATS/libbeat/publisher/includes/includes.go
 cd $BEATS/filebeat
 mage build # delivers the Linux build
+cp filebeat $HOME/workspace/superFilebeat
 mage crossBuild #delivers other platforms via Docker
 ```
