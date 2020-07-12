@@ -31,7 +31,7 @@ import (
 	"github.com/elastic/beats/libbeat/beat"
 	"github.com/elastic/beats/libbeat/common"
 	"github.com/elastic/beats/libbeat/outputs/codec"
-	"github.com/linkedin/goavro"
+	"github.com/linkedin/goavro/v2"
 )
 
 // Encoder for serializing a beat.Event to avro.

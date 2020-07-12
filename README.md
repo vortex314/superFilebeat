@@ -45,7 +45,7 @@ https://linuxconfig.org/how-to-change-from-default-to-alternative-python-version
 sudo apt-get remove docker docker-engine docker.io containerd runc
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-sudo usermod -aG docker lieven # should be your own user id
+sudo usermod -aG docker lieven # should be your own user id, logout/login to take effect
 ```
 #### Build instructions
 
@@ -55,6 +55,7 @@ mkdir workspace
 cd workspace
 git clone https://github.com/elastic/beats.git
 git clone https://github.com/vortex314/superFilebeat
+cd superFilebeat
 export BEATS=$HOME/workspace/beats
 mkdir $BEATS/libbeat/outputs/codec/avro
 cp avro.go $BEATS/libbeat/outputs/codec/avro
