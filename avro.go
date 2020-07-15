@@ -24,7 +24,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/elastic/beats/libbeat/logp"
+	"github.com/elastic/beats/v7/libbeat/logp"
 
 	"github.com/elastic/go-structform/gotype"
 

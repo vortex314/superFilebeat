@@ -2,23 +2,23 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /home/lieven/filebeat/heartbeat-2.log
+    - txt.log
     
 processors:
-#- grok:
-#    patterns: ["%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:host} %{DATA:component}(?:\\[%{POSINT:forget}\\])?: %{GREEDYDATA:syslog_message}"]
-#    timestamps: ["Jan _2 15:04:05"]
+- grok:
+    patterns: ["%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:host} %{DATA:component} %{GREEDYDATA:syslog_message}"]
+    timestamps: ["Jan _2 15:04:05"]
 - javascript:
     file: "fb.js"
     
 http.enabled: true
       
 output.console:
-  enabled: false
+  enabled: true
   codec.avro:
     file: "fb.json"
 output.kafka:
-  enabled: true
+  enabled: false
   hosts: ["192.168.0.163:9092"]
   topic: 'topic_avro_syslog'
   version: 0.9

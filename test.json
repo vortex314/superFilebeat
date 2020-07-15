@@ -1,0 +1,32 @@
+{
+    "agent": {
+        "ephemeral_id": "8b45c226-6dbf-43ff-93d2-fb10bda6a624",
+        "hostname": "pcpro",
+        "id": "9c4ef9e5-c9e6-4675-89f3-e7431f135e0c",
+        "name": "pcpro",
+        "type": "filebeat",
+        "version": "7.8.0"
+    },
+    "attributes": {
+        "text": "just some Javascript code"
+    },
+    "component": "mySecondApplication",
+    "ecs": {
+        "version": "1.5.0"
+    },
+    "host": "myHost2",
+    "input": {
+        "type": "log"
+    },
+    "javascript": "running in GO!",
+    "log": {
+        "file": {
+            "path": "/home/lieven/workspace/superFilebeat/txt.log"
+        },
+        "offset": 66
+    },
+    "message": "34456 some other message",
+    "metrics": {},
+    "syslog_message": "34456 some other message",
+    "timestamp": "0000-10-19T11:29:00Z"
+}

@@ -47,7 +47,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker lieven # should be your own user id, logout/login to take effect
 ```
-#### Build instructions
+
+#### Build standard filebeat -- test your install
 
 ```
 cd $HOME
@@ -55,8 +56,42 @@ mkdir workspace
 cd workspace
 git clone https://github.com/elastic/beats.git
 git clone https://github.com/vortex314/superFilebeat
-cd superFilebeat
 export BEATS=$HOME/workspace/beats
+cd $BEATS/filebeat
+mage build # delivers the Linux build
+```
+#### Extract version 7.8
+```
+export BEATS=$HOME/workspace/beats
+cd $BEATS
+git checkout tags/v7.8.0 my-branch
+```
+#### Build cross-platform standard builds for filebeat 
+```
+export BEATS=$HOME/workspace/beats
+cd $BEATS/filebeat
+mage crossBuild #delivers other platforms via Docker
+```
+
+#### Build customized filebeat
+##### Download sub-packages first and install into elastic vendor packages
+```
+go get -v github.com/robertkrimen/otto
+go get -v gopkg.in/sourcemap.v1
+go get -v github.com/vjeantet/grok
+go get -v github.com/linkedin/goavro
+
+cd $HOME/go/src/github.com/
+cp -r robertkrimen/ $HOME/workspace/beats/vendor/github.com
+cp -r vjeantet $HOME/workspace/beats/vendor/github.com
+cp -r linkedin $HOME/workspace/beats/vendor/github.com/linkedin
+cd ../gopkg.in/
+cp -r sourcemap.v1/ $HOME/workspace/beats/vendor/gopkg.in
+```
+##### Build custom build by changes sources
+```
+export BEATS=$HOME/workspace/beats
+cd $HOME/workspace/superFilebeat
 mkdir $BEATS/libbeat/outputs/codec/avro
 cp avro.go $BEATS/libbeat/outputs/codec/avro
 cp event.go $BEATS/libbeat/outputs/codec/avro
@@ -64,10 +99,17 @@ cp grok.go $BEATS/libbeat/processors/actions
 cp javascript.go $BEATS/libbeat/processors/actions
 cp includes.go $BEATS/libbeat/publisher/includes/includes.go
 cd $BEATS/filebeat
-mage build # delivers the Linux build
+mage build 
 cp filebeat $HOME/workspace/superFilebeat
 cd $HOME/workspace/superFilebeat
 zip fb.zip filebeat
-cd $BEATS/filebeat
-mage crossBuild #delivers other platforms via Docker
 ```
+#### Test the new build
+```
+cd $HOME/workspace/superFilebeat
+unzip fb.zip
+./fb.sh # look at output
+```
+
+
+
