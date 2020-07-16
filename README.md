@@ -64,7 +64,8 @@ mage build # delivers the Linux build
 ```
 export BEATS=$HOME/workspace/beats
 cd $BEATS
-git checkout tags/v7.8.0 my-branch
+git checkout tags/v7.8.0 
+git switch -c my-branch
 ```
 #### Build cross-platform standard builds for filebeat 
 ```
@@ -110,6 +111,8 @@ cd $HOME/workspace/superFilebeat
 unzip fb.zip
 ./fb.sh # look at output
 ```
+#### collect the crossbuilds
+```
 export CROSSBUILD=$HOME//workspace/beats/filebeat/build/golang-crossbuild
 zip darwin-amd64.zip $CROSSBUILD/filebeat-darwin-amd64
 zip linux-386.zip  $CROSSBUILD/filebeat-linux-386
@@ -118,5 +121,6 @@ zip linux-arm64.zip $CROSSBUILD/filebeat-linux-arm64
 zip windows-386.zip   $CROSSBUILD/filebeat-windows-386.exe
 zip windows-amd64     $CROSSBUILD/filebeat-windows-amd64.exe
 
+```
 
 
