@@ -110,6 +110,13 @@ cd $HOME/workspace/superFilebeat
 unzip fb.zip
 ./fb.sh # look at output
 ```
+export CROSSBUILD=$HOME//workspace/beats/filebeat/build/golang-crossbuild
+zip darwin-amd64.zip $CROSSBUILD/filebeat-darwin-amd64
+zip linux-386.zip  $CROSSBUILD/filebeat-linux-386
+zip linux-amd64.zip    $CROSSBUILD/filebeat-linux-amd64
+zip linux-arm64.zip $CROSSBUILD/filebeat-linux-arm64
+zip windows-386.zip   $CROSSBUILD/filebeat-windows-386.exe
+zip windows-amd64     $CROSSBUILD/filebeat-windows-amd64.exe
 
 
 
