@@ -1,4 +1,11 @@
 # Filebeat with grok, javascript , avro schema
+## TL;DR
+Unzip the platform specific filebeat and get started on MacOs, Windows, Linux with a filebeat on steroids : *javascript*, *grok* and *avro codec* !
+![The Flow](https://github.com/vortex314/superFilebeat/blob/master/docs/Filebeat%2B%2B.png)
+## Motivation 
+Elasticsearch needs correctly parsed data to be the most useful. If you have to integrate logging data in a big enterprise it needs to be aligned to a minimal datamodel, for the same reasons that Elastic developed ESC datamodel
+(start rant) Elastic however believes in a centralized architecture where all parsing is done by logstash pipelines. In a big enterprise with agile teams with a lot of technical flexibility, you are not able to master that centrally. So we went for a decentralized solution where the teams have the responsibility to deliver log data respecting this model. Logstash is sooooo heavy, you just cannot run it on the same server as your application. Filebeat is.(end rant)
+Luckily filebeat is open source and can be 'easily' extended. 
 ## The not so lightweight shipper
 [Example](https://github.com/vortex314/beats/tree/master/filebeat/fb.yml)
 
@@ -9,7 +16,7 @@ It contains :
 -	timestamp parser to extract time , date in native format
 -	Javascript engine to do everything you cannot do with grok
 -	AVRO codec to send this in a regular schema to kafka
-![The Flow](https://github.com/vortex314/superFilebeat/blob/master/docs/Filebeat%2B%2B.png)
+## Build instructions 
 #### System requirements
 Started from a fresh Kubuntu 20.04 install on a desktop pc
 https://kubuntu.org/getkubuntu/
