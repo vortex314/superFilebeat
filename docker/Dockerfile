@@ -1,4 +1,4 @@
-FROM irm2.docker.ing.net/ing-rhel8-openjdk11
+FROM alpine
 
 ARG BUILD_NAME
 ARG BUILD_VERSION
