@@ -1,4 +1,4 @@
-FROM alpine
+FROM frolvlad/alpine-glibc
 
 ARG BUILD_NAME
 ARG BUILD_VERSION
