@@ -71,13 +71,22 @@ func (f *grokPatterns) Run(event *beat.Event) (*beat.Event, error) {
 	failed := true
 	msg, _ := event.Fields.GetValue("message")
 	message := msg.(string)
+//    fmt.Println(" ===> text : " ,message)
+//    fmt.Println(" ===> patterns : ",f.Patterns)
+
+
 	for _, pattern := range f.Patterns {
+//        fmt.Println(" pattern ===", pattern)
+
 		values, erc := f.Grok.Parse(pattern, message)
-		if erc == nil {
+ //       fmt.Println(" ===> values :",values)
+ //       fmt.Println(" ===> erc :" ,erc)
+		if len(values)!=0 || erc!=nil { // testing on erc doesn't work  , always nil
 			failed = false
 			for k, v := range values {
 				if k == "timestamp" {
 					for _, timestamp := range f.Timestamps {
+//                        fmt.Println(" timestamp pattern  ===", timestamp)
 						t, e := time.Parse(timestamp, v)
 						if e == nil {
 							//							fmt.Println(" timestamp ===", t.Unix())

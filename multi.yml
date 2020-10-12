@@ -1,0 +1,36 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - multi.log
+    
+processors:
+- grok:
+    patterns: ["A %{SYSLOGTIMESTAMP:timestamp} %{GREEDYDATA:message_A}","B %{SYSLOGTIMESTAMP:timestamp} %{GREEDYDATA:message_B}" ]
+    timestamps: ["_2 Jan 15:04:05","Jan _2 15:04:05"]
+- javascript:
+    file: "multi.js"
+    
+http.enabled: true
+      
+output.console:
+  enabled: true
+  pretty: true
+
+output.kafka:
+  enabled: false
+  hosts: ["192.168.0.163:9092"]
+  topic: 'topic_avro_syslog'
+  version: 0.9
+  compression: none
+  compression_level: 0
+  keep_alive: 3
+  required_acks: 0
+  client_id: 'filebeat'
+  codec.avro:
+    file: "fb.json"
+  channel_buffer_size: 1
+    
+  # initial brokers for reading cluster metadata
+#    file: "fb.json"
+# message topic selection + partitioning
