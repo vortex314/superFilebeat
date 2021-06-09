@@ -73,9 +73,12 @@ git checkout tags/v7.12.1
 git switch -c my-branch
 ```
 #### Build cross-platform standard builds for filebeat 
+See also : https://www.elastic.co/guide/en/beats/devguide/current/beats-contributing.html
+#### Attention only 64bit supported when using avro.go
 ```
 export BEATS=$HOME/workspace/beats
 cd $BEATS/filebeat
+export PLATFORMS="linux/amd64 windows/amd64"
 mage crossBuild #delivers other platforms via Docker
 ```
 
