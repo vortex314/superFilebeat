@@ -63,7 +63,7 @@ git clone https://github.com/elastic/beats.git
 git clone https://github.com/vortex314/superFilebeat
 export BEATS=$HOME/workspace/beats
 cd $BEATS/filebeat
-mage build # delivers the Linux build
+mage build # delivers the Linux build on latest release
 ```
 #### Extract version 7.12.1
 ```
@@ -86,13 +86,9 @@ go get -v github.com/robertkrimen/otto
 go get -v gopkg.in/sourcemap.v1
 go get -v github.com/vjeantet/grok
 go get -v github.com/linkedin/goavro
-
-cd $HOME/go/src/github.com/
-cp -r robertkrimen/ $HOME/workspace/beats/vendor/github.com
-cp -r vjeantet $HOME/workspace/beats/vendor/github.com
-cp -r linkedin $HOME/workspace/beats/vendor/github.com/linkedin
-cd ../gopkg.in/
-cp -r sourcemap.v1/ $HOME/workspace/beats/vendor/gopkg.in
+go get github.com/linkedin/goavro
+go get github.com/robertkrimen/otto
+go get github.com/vjeantet/grok
 ```
 ##### Build custom build by changes sources
 ```
