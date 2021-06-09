@@ -40,9 +40,7 @@ export PATH=$PATH:/usr/local/go/bin:/home/lieven/.local/bin:$GOPATH/bin
 sudo apt-get install python3-pip
 sudo apt-get install python git curl
 sudo apt-get install python3-venv
-go get -u -d github.com/magefile/mage
-cd $GOPATH/src/github.com/magefile/mage
-go run bootstrap.go
+go install github.com/magefile/mage@latest
 go get github.com/elastic/beats
 ```
 Check python versions
@@ -67,11 +65,11 @@ export BEATS=$HOME/workspace/beats
 cd $BEATS/filebeat
 mage build # delivers the Linux build
 ```
-#### Extract version 7.8
+#### Extract version 7.12.1
 ```
 export BEATS=$HOME/workspace/beats
 cd $BEATS
-git checkout tags/v7.8.0 
+git checkout tags/v7.12.1
 git switch -c my-branch
 ```
 #### Build cross-platform standard builds for filebeat 
