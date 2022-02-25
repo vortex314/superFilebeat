@@ -1,0 +1,2 @@
+[31/May/2021:11:21:44 +0200] - 172.32.2.1 - [WbSecurityProxy @ TST] - FALSE - "GET /healthcheck HTTP/1.1" 200 13 "-" "nginx-health-check/1.19.10.6" - "-"
+[31/May/2021:11:21:45 +0200] - 172.35.0.1 - [WbSecurityProxy @ TST] - FALSE - "GET /healthcheck HTTP/1.1" 200 13 "-" "nginx-health-check/1.19.10.6" - "-"
