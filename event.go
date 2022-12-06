@@ -19,9 +19,10 @@ package avro
 
 import (
 	"time"
+	"github.com/elastic/elastic-agent-libs/mapstr"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
+//	"github.com/elastic/beats/v7/libbeat/common"
 )
 
 // Event describes the event structure for events
@@ -29,7 +30,7 @@ import (
 type event struct {
 	Timestamp time.Time     `struct:"@timestamp"`
 	Meta      meta          `struct:"@metadata"`
-	Fields    common.MapStr `struct:",inline"`
+	Fields    mapstr.M `struct:",inline"`
 }
 
 // Meta defines common event metadata to be stored in '@metadata'

@@ -23,8 +23,10 @@ import (
 	"time"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/logp"
+//	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/elastic/elastic-agent-libs/logp"
+	cfg "github.com/elastic/elastic-agent-libs/config"
+
 	"github.com/elastic/beats/v7/libbeat/processors"
 	"github.com/elastic/beats/v7/libbeat/processors/checks"
 	"github.com/vjeantet/grok"
@@ -45,23 +47,23 @@ func init() {
 
 }
 
-func newGrokPatterns(c *common.Config) (processors.Processor, error) {
-	config := struct {
+func newGrokPatterns(c *cfg.C) (processors.Processor, error) {
+	cfg := struct {
 		Patterns   []string `config:"patterns"`
 		Timestamps []string `config:"timestamps"`
 	}{}
-	err := c.Unpack(&config)
+	err := c.Unpack(&cfg)
 	if err != nil {
 		return nil, fmt.Errorf("fail to unpack the grok_Patterns configuration: %s", err)
 	}
 
 	grok, _ := grok.NewWithConfig(&grok.Config{NamedCapturesOnly: true})
 
-	f := &grokPatterns{Patterns: config.Patterns,
-		Timestamps: config.Timestamps,
+	f := &grokPatterns{Patterns: cfg.Patterns,
+		Timestamps: cfg.Timestamps,
 		Grok:       grok,
 		logger:     logp.NewLogger("grok-processor")}
-	return f, nil
+	return f, nil  
 }
 
 func (f *grokPatterns) Run(event *beat.Event) (*beat.Event, error) {

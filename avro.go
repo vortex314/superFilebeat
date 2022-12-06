@@ -24,12 +24,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/elastic/elastic-agent-libs/logp"
+	"github.com/elastic/elastic-agent-libs/config"
 
 	"github.com/elastic/go-structform/gotype"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
+//	"github.com/elastic/beats/v7/libbeat/common"
 	"github.com/elastic/beats/v7/libbeat/outputs/codec"
 	"github.com/linkedin/goavro"
 )
@@ -40,22 +41,22 @@ type Encoder struct {
 	folder *gotype.Iterator
 
 	version     string
-	config      config
+	config      Config
 	AvroEncoder *goavro.Codec
 	logger      *logp.Logger
 }
 
-type config struct {
+type Config struct {
 	File string
 }
 
-var defaultConfig = config{
+var defaultConfig = Config{
 	File: "avro.json",
 }
 
 func init() {
 
-	codec.RegisterType("avro", func(info beat.Info, cfg *common.Config) (codec.Codec, error) {
+	codec.RegisterType("avro", func(info beat.Info, cfg *config.C) (codec.Codec, error) {
 		config := defaultConfig
 		if cfg != nil {
 			if err := cfg.Unpack(&config); err != nil {
@@ -80,7 +81,7 @@ func New(file, version string) *Encoder {
 	}
 	//	fmt.Println("AVRO SCHEMA ", avroCodec.Schema())
 
-	e := &Encoder{version: version, config: config{
+	e := &Encoder{version: version, config: Config {
 		File: file,
 	}, AvroEncoder: avroCodec, logger: logp.NewLogger("avro-codec")}
 	e.reset()

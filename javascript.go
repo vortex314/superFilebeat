@@ -23,8 +23,11 @@ import (
 	"strings"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/logp"
+//	"github.com/elastic/beats/v7/libbeat/common"
+	cfg "github.com/elastic/elastic-agent-libs/config"
+
+//	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/elastic/elastic-agent-libs/logp"
 	"github.com/elastic/beats/v7/libbeat/processors"
 	"github.com/elastic/beats/v7/libbeat/processors/checks"
 	"github.com/robertkrimen/otto"
@@ -44,7 +47,7 @@ func init() {
 
 }
 
-func newJavaScriptEngine(c *common.Config) (processors.Processor, error) {
+func newJavaScriptEngine(c *cfg.C) (processors.Processor, error) {
 	config := struct {
 		File string `config:"file"`
 	}{}
